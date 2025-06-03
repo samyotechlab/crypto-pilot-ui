@@ -18,6 +18,12 @@ import LiveCharts from "./pages/LiveCharts";
 import MarketScanner from "./pages/MarketScanner";
 import Watchlist from "./pages/Watchlist";
 import PriceAlerts from "./pages/PriceAlerts";
+import Exchanges from "./pages/Exchanges";
+import ApiManagement from "./pages/ApiManagement";
+import SyncBalances from "./pages/SyncBalances";
+import CreateAlert from "./pages/CreateAlert";
+import NotificationSettings from "./pages/NotificationSettings";
+import AlertLogs from "./pages/AlertLogs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,29 +56,33 @@ const App = () => (
           <Route path="/markets/watchlist" element={<Watchlist />} />
           <Route path="/markets/alerts" element={<PriceAlerts />} />
           
+          {/* Exchange & API Routes */}
+          <Route path="/exchanges" element={<Exchanges />} />
+          <Route path="/api" element={<ApiManagement />} />
+          <Route path="/balances" element={<SyncBalances />} />
+          
+          {/* Alert Routes */}
+          <Route path="/alerts/create" element={<CreateAlert />} />
+          <Route path="/alerts/settings" element={<NotificationSettings />} />
+          <Route path="/alerts/logs" element={<AlertLogs />} />
+          
           {/* Placeholder routes for remaining sections */}
-          <Route path="/exchanges" element={<div>Exchanges - Coming Soon</div>} />
-          <Route path="/api" element={<div>API Management - Coming Soon</div>} />
-          <Route path="/balances" element={<div>Sync Balances - Coming Soon</div>} />
-          <Route path="/alerts/create" element={<div>Create Alert - Coming Soon</div>} />
-          <Route path="/alerts/settings" element={<div>Notification Settings - Coming Soon</div>} />
-          <Route path="/alerts/logs" element={<div>Alert Logs - Coming Soon</div>} />
-          <Route path="/strategy/build" element={<div>Build Strategy - Coming Soon</div>} />
-          <Route path="/strategy/saved" element={<div>Saved Strategies - Coming Soon</div>} />
-          <Route path="/strategy/backtest" element={<div>Backtesting - Coming Soon</div>} />
-          <Route path="/strategy/marketplace" element={<div>Strategy Marketplace - Coming Soon</div>} />
-          <Route path="/settings/profile" element={<div>Profile Settings - Coming Soon</div>} />
-          <Route path="/settings/2fa" element={<div>Two-Factor Auth - Coming Soon</div>} />
-          <Route path="/settings/theme" element={<div>Theme Settings - Coming Soon</div>} />
-          <Route path="/settings/sessions" element={<div>Session Logs - Coming Soon</div>} />
-          <Route path="/admin/users" element={<div>User Management - Coming Soon</div>} />
-          <Route path="/admin/logs" element={<div>System Logs - Coming Soon</div>} />
-          <Route path="/admin/stats" element={<div>Usage Stats - Coming Soon</div>} />
-          <Route path="/admin/monitor" element={<div>Server Monitor - Coming Soon</div>} />
-          <Route path="/help/docs" element={<div>Documentation - Coming Soon</div>} />
-          <Route path="/help/support" element={<div>Contact Support - Coming Soon</div>} />
-          <Route path="/help/bugs" element={<div>Bug Reports - Coming Soon</div>} />
-          <Route path="/help/community" element={<div>Community - Coming Soon</div>} />
+          <Route path="/strategy/build" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Build Strategy - Coming Soon</h1></div>} />
+          <Route path="/strategy/saved" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Saved Strategies - Coming Soon</h1></div>} />
+          <Route path="/strategy/backtest" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Backtesting - Coming Soon</h1></div>} />
+          <Route path="/strategy/marketplace" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Strategy Marketplace - Coming Soon</h1></div>} />
+          <Route path="/settings/profile" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Profile Settings - Coming Soon</h1></div>} />
+          <Route path="/settings/2fa" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Two-Factor Auth - Coming Soon</h1></div>} />
+          <Route path="/settings/theme" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Theme Settings - Coming Soon</h1></div>} />
+          <Route path="/settings/sessions" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Session Logs - Coming Soon</h1></div>} />
+          <Route path="/admin/users" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">User Management - Coming Soon</h1></div>} />
+          <Route path="/admin/logs" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">System Logs - Coming Soon</h1></div>} />
+          <Route path="/admin/stats" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Usage Stats - Coming Soon</h1></div>} />
+          <Route path="/admin/monitor" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Server Monitor - Coming Soon</h1></div>} />
+          <Route path="/help/docs" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Documentation - Coming Soon</h1></div>} />
+          <Route path="/help/support" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Contact Support - Coming Soon</h1></div>} />
+          <Route path="/help/bugs" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Bug Reports - Coming Soon</h1></div>} />
+          <Route path="/help/community" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Community - Coming Soon</h1></div>} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

@@ -24,6 +24,14 @@ import SyncBalances from "./pages/SyncBalances";
 import CreateAlert from "./pages/CreateAlert";
 import NotificationSettings from "./pages/NotificationSettings";
 import AlertLogs from "./pages/AlertLogs";
+import BuildStrategy from "./pages/BuildStrategy";
+import SavedStrategies from "./pages/SavedStrategies";
+import Backtesting from "./pages/Backtesting";
+import StrategyMarketplace from "./pages/StrategyMarketplace";
+import ProfileSettings from "./pages/ProfileSettings";
+import TwoFactorAuth from "./pages/TwoFactorAuth";
+import ThemeSettings from "./pages/ThemeSettings";
+import SessionLogs from "./pages/SessionLogs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();

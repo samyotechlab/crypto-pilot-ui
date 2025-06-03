@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { 
@@ -105,16 +104,6 @@ const sidebarItems: SidebarItem[] = [
       { title: 'Two-Factor Auth', href: '/settings/2fa', icon: Shield },
       { title: 'Theme Settings', href: '/settings/theme', icon: Activity },
       { title: 'Session Logs', href: '/settings/sessions', icon: Activity }
-    ]
-  },
-  {
-    title: 'Admin Panel',
-    icon: Users,
-    children: [
-      { title: 'User Management', href: '/admin/users', icon: Users },
-      { title: 'System Logs', href: '/admin/logs', icon: Activity },
-      { title: 'Usage Stats', href: '/admin/stats', icon: BarChart3 },
-      { title: 'Server Monitor', href: '/admin/monitor', icon: Activity }
     ]
   },
   {

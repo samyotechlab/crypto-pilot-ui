@@ -4,7 +4,7 @@ import { Layout } from '@/components/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { bot, zap, settings, trending-up, trending-down, play, pause, trash } from 'lucide-react';
+import { Bot, Zap, Settings, TrendingUp, TrendingDown, Play, Pause, Trash } from 'lucide-react';
 
 const botsData = [
   {
@@ -53,8 +53,8 @@ const Bots = () => {
               Manage and monitor your trading bots
             </p>
           </div>
-          <Button className="bg-crypto-blue hover:bg-crypto-blue/90">
-            <zap className="w-4 h-4 mr-2" />
+          <Button className="bg-blue-500 hover:bg-blue-600">
+            <Zap className="w-4 h-4 mr-2" />
             Create New Bot
           </Button>
         </div>
@@ -66,9 +66,9 @@ const Bots = () => {
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg">{botItem.name}</CardTitle>
                   <Badge className={
-                    botItem.status === 'active' ? 'status-active' : 
-                    botItem.status === 'paused' ? 'status-paused' : 
-                    'status-error'
+                    botItem.status === 'active' ? 'bg-green-500' : 
+                    botItem.status === 'paused' ? 'bg-yellow-500' : 
+                    'bg-red-500'
                   }>
                     {botItem.status}
                   </Badge>
@@ -85,7 +85,7 @@ const Bots = () => {
                   <div>
                     <div className="text-sm text-muted-foreground">Profit</div>
                     <div className={`text-lg font-bold ${
-                      botItem.profit > 0 ? 'text-crypto-green' : 'text-crypto-red'
+                      botItem.profit > 0 ? 'text-green-500' : 'text-red-500'
                     }`}>
                       {botItem.profit > 0 ? '+' : ''}${botItem.profit.toFixed(2)}
                     </div>
@@ -93,12 +93,12 @@ const Bots = () => {
                   <div>
                     <div className="text-sm text-muted-foreground">ROI</div>
                     <div className={`text-lg font-bold flex items-center ${
-                      botItem.profitPercent > 0 ? 'text-crypto-green' : 'text-crypto-red'
+                      botItem.profitPercent > 0 ? 'text-green-500' : 'text-red-500'
                     }`}>
                       {botItem.profitPercent > 0 ? (
-                        <trending-up className="w-4 h-4 mr-1" />
+                        <TrendingUp className="w-4 h-4 mr-1" />
                       ) : (
-                        <trending-down className="w-4 h-4 mr-1" />
+                        <TrendingDown className="w-4 h-4 mr-1" />
                       )}
                       {botItem.profitPercent > 0 ? '+' : ''}{botItem.profitPercent}%
                     </div>
@@ -124,21 +124,21 @@ const Bots = () => {
                   >
                     {botItem.status === 'active' ? (
                       <>
-                        <pause className="w-4 h-4 mr-2" />
+                        <Pause className="w-4 h-4 mr-2" />
                         Pause
                       </>
                     ) : (
                       <>
-                        <play className="w-4 h-4 mr-2" />
+                        <Play className="w-4 h-4 mr-2" />
                         Start
                       </>
                     )}
                   </Button>
                   <Button size="sm" variant="outline">
-                    <settings className="w-4 h-4" />
+                    <Settings className="w-4 h-4" />
                   </Button>
-                  <Button size="sm" variant="outline" className="text-crypto-red hover:text-crypto-red">
-                    <trash className="w-4 h-4" />
+                  <Button size="sm" variant="outline" className="text-red-500 hover:text-red-500">
+                    <Trash className="w-4 h-4" />
                   </Button>
                 </div>
               </CardContent>
@@ -155,7 +155,7 @@ const Bots = () => {
                   <div className="text-2xl font-bold">12</div>
                   <div className="text-sm text-muted-foreground">Total Bots</div>
                 </div>
-                <bot className="w-8 h-8 text-crypto-blue" />
+                <Bot className="w-8 h-8 text-blue-500" />
               </div>
             </CardContent>
           </Card>
@@ -164,10 +164,10 @@ const Bots = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold text-crypto-green">8</div>
+                  <div className="text-2xl font-bold text-green-500">8</div>
                   <div className="text-sm text-muted-foreground">Active</div>
                 </div>
-                <play className="w-8 h-8 text-crypto-green" />
+                <Play className="w-8 h-8 text-green-500" />
               </div>
             </CardContent>
           </Card>
@@ -176,10 +176,10 @@ const Bots = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold text-crypto-yellow">3</div>
+                  <div className="text-2xl font-bold text-yellow-500">3</div>
                   <div className="text-sm text-muted-foreground">Paused</div>
                 </div>
-                <pause className="w-8 h-8 text-crypto-yellow" />
+                <Pause className="w-8 h-8 text-yellow-500" />
               </div>
             </CardContent>
           </Card>
@@ -188,10 +188,10 @@ const Bots = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold text-crypto-red">1</div>
+                  <div className="text-2xl font-bold text-red-500">1</div>
                   <div className="text-sm text-muted-foreground">Error</div>
                 </div>
-                <zap className="w-8 h-8 text-crypto-red" />
+                <Zap className="w-8 h-8 text-red-500" />
               </div>
             </CardContent>
           </Card>

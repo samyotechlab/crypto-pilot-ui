@@ -2,24 +2,24 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { 
-  activity, 
-  bot, 
-  chart-line, 
-  settings, 
-  bell, 
-  shield, 
-  help,
-  menu,
-  x,
-  chevron-down,
-  chevron-right,
-  layout-dashboard,
-  user,
-  chart-bar,
-  zap,
-  coins,
-  key,
-  users
+  Activity, 
+  Bot, 
+  ChartLine, 
+  Settings, 
+  Bell, 
+  Shield, 
+  HelpCircle,
+  Menu,
+  X,
+  ChevronDown,
+  ChevronRight,
+  LayoutDashboard,
+  User,
+  BarChart3,
+  Zap,
+  Coins,
+  Key,
+  Users
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -33,98 +33,98 @@ interface SidebarItem {
 const sidebarItems: SidebarItem[] = [
   {
     title: 'Dashboard',
-    icon: layout-dashboard,
+    icon: LayoutDashboard,
     children: [
-      { title: 'Overview', href: '/', icon: activity },
-      { title: 'Performance Summary', href: '/performance', icon: chart-line },
-      { title: 'Market Overview', href: '/market-overview', icon: chart-bar }
+      { title: 'Overview', href: '/', icon: Activity },
+      { title: 'Performance Summary', href: '/performance', icon: ChartLine },
+      { title: 'Market Overview', href: '/market-overview', icon: BarChart3 }
     ]
   },
   {
     title: 'Bots',
-    icon: bot,
+    icon: Bot,
     children: [
-      { title: 'Create New Bot', href: '/bots/create', icon: zap },
-      { title: 'My Bots', href: '/bots', icon: bot },
-      { title: 'Bot Performance', href: '/bots/performance', icon: chart-line },
-      { title: 'Strategy Templates', href: '/bots/templates', icon: settings }
+      { title: 'Create New Bot', href: '/bots/create', icon: Zap },
+      { title: 'My Bots', href: '/bots', icon: Bot },
+      { title: 'Bot Performance', href: '/bots/performance', icon: ChartLine },
+      { title: 'Strategy Templates', href: '/bots/templates', icon: Settings }
     ]
   },
   {
     title: 'Trading',
-    icon: activity,
+    icon: Activity,
     children: [
-      { title: 'Manual Trading', href: '/trading/manual', icon: activity },
-      { title: 'Signal Trading', href: '/trading/signals', icon: zap },
-      { title: 'Paper Trading', href: '/trading/paper', icon: chart-line }
+      { title: 'Manual Trading', href: '/trading/manual', icon: Activity },
+      { title: 'Signal Trading', href: '/trading/signals', icon: Zap },
+      { title: 'Paper Trading', href: '/trading/paper', icon: ChartLine }
     ]
   },
   {
     title: 'Markets',
-    icon: chart-bar,
+    icon: BarChart3,
     children: [
-      { title: 'Live Charts', href: '/markets/charts', icon: chart-line },
-      { title: 'Market Scanner', href: '/markets/scanner', icon: search },
-      { title: 'Watchlist', href: '/markets/watchlist', icon: star },
-      { title: 'Price Alerts', href: '/markets/alerts', icon: bell }
+      { title: 'Live Charts', href: '/markets/charts', icon: ChartLine },
+      { title: 'Market Scanner', href: '/markets/scanner', icon: Activity },
+      { title: 'Watchlist', href: '/markets/watchlist', icon: Activity },
+      { title: 'Price Alerts', href: '/markets/alerts', icon: Bell }
     ]
   },
   {
     title: 'Exchanges & API',
-    icon: key,
+    icon: Key,
     children: [
-      { title: 'Connect Exchange', href: '/exchanges', icon: link },
-      { title: 'API Management', href: '/api', icon: key },
-      { title: 'Sync Balances', href: '/balances', icon: coins }
+      { title: 'Connect Exchange', href: '/exchanges', icon: Activity },
+      { title: 'API Management', href: '/api', icon: Key },
+      { title: 'Sync Balances', href: '/balances', icon: Coins }
     ]
   },
   {
     title: 'Alerts',
-    icon: bell,
+    icon: Bell,
     children: [
-      { title: 'Create Alert', href: '/alerts/create', icon: zap },
-      { title: 'Notification Settings', href: '/alerts/settings', icon: settings },
-      { title: 'Alert Logs', href: '/alerts/logs', icon: activity }
+      { title: 'Create Alert', href: '/alerts/create', icon: Zap },
+      { title: 'Notification Settings', href: '/alerts/settings', icon: Settings },
+      { title: 'Alert Logs', href: '/alerts/logs', icon: Activity }
     ]
   },
   {
     title: 'Strategy Builder',
-    icon: settings,
+    icon: Settings,
     children: [
-      { title: 'Build Strategy', href: '/strategy/build', icon: zap },
-      { title: 'Saved Strategies', href: '/strategy/saved', icon: folder },
-      { title: 'Backtesting', href: '/strategy/backtest', icon: chart-line },
-      { title: 'Marketplace', href: '/strategy/marketplace', icon: grid-2x2 }
+      { title: 'Build Strategy', href: '/strategy/build', icon: Zap },
+      { title: 'Saved Strategies', href: '/strategy/saved', icon: Activity },
+      { title: 'Backtesting', href: '/strategy/backtest', icon: ChartLine },
+      { title: 'Marketplace', href: '/strategy/marketplace', icon: Activity }
     ]
   },
   {
     title: 'Security & Settings',
-    icon: shield,
+    icon: Shield,
     children: [
-      { title: 'Profile Settings', href: '/settings/profile', icon: user },
-      { title: 'Two-Factor Auth', href: '/settings/2fa', icon: shield },
-      { title: 'Theme Settings', href: '/settings/theme', icon: sun },
-      { title: 'Session Logs', href: '/settings/sessions', icon: activity }
+      { title: 'Profile Settings', href: '/settings/profile', icon: User },
+      { title: 'Two-Factor Auth', href: '/settings/2fa', icon: Shield },
+      { title: 'Theme Settings', href: '/settings/theme', icon: Activity },
+      { title: 'Session Logs', href: '/settings/sessions', icon: Activity }
     ]
   },
   {
     title: 'Admin Panel',
-    icon: users,
+    icon: Users,
     children: [
-      { title: 'User Management', href: '/admin/users', icon: users },
-      { title: 'System Logs', href: '/admin/logs', icon: activity },
-      { title: 'Usage Stats', href: '/admin/stats', icon: chart-bar },
-      { title: 'Server Monitor', href: '/admin/monitor', icon: monitor }
+      { title: 'User Management', href: '/admin/users', icon: Users },
+      { title: 'System Logs', href: '/admin/logs', icon: Activity },
+      { title: 'Usage Stats', href: '/admin/stats', icon: BarChart3 },
+      { title: 'Server Monitor', href: '/admin/monitor', icon: Activity }
     ]
   },
   {
     title: 'Help',
-    icon: help,
+    icon: HelpCircle,
     children: [
-      { title: 'Documentation', href: '/help/docs', icon: book },
-      { title: 'Contact Support', href: '/help/support', icon: mail },
-      { title: 'Bug Reports', href: '/help/bugs', icon: activity },
-      { title: 'Community', href: '/help/community', icon: users }
+      { title: 'Documentation', href: '/help/docs', icon: Activity },
+      { title: 'Contact Support', href: '/help/support', icon: Activity },
+      { title: 'Bug Reports', href: '/help/bugs', icon: Activity },
+      { title: 'Community', href: '/help/community', icon: Users }
     ]
   }
 ];
@@ -166,23 +166,23 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       
       {/* Sidebar */}
       <div className={cn(
-        "fixed left-0 top-0 h-full bg-sidebar border-r border-sidebar-border z-50 transition-transform duration-300 ease-in-out",
+        "fixed left-0 top-0 h-full bg-gray-900 border-r border-gray-800 z-50 transition-transform duration-300 ease-in-out",
         "w-64 lg:translate-x-0",
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
+        <div className="flex items-center justify-between p-4 border-b border-gray-800">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <bot className="w-5 h-5 text-primary-foreground" />
+            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+              <Bot className="w-5 h-5 text-white" />
             </div>
-            <span className="text-lg font-bold text-sidebar-foreground">CryptoBot Pro</span>
+            <span className="text-lg font-bold text-white">CryptoBot Pro</span>
           </div>
           <button
             onClick={onToggle}
-            className="lg:hidden p-1 text-sidebar-foreground hover:bg-sidebar-accent rounded"
+            className="lg:hidden p-1 text-gray-400 hover:bg-gray-800 rounded"
           >
-            <x className="w-5 h-5" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
@@ -197,8 +197,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                       onClick={() => toggleExpanded(item.title)}
                       className={cn(
                         "w-full flex items-center justify-between p-3 text-sm font-medium rounded-lg transition-colors",
-                        "text-sidebar-foreground hover:bg-sidebar-accent",
-                        (expandedItems.includes(item.title) || isParentActive(item.children)) && "bg-sidebar-accent"
+                        "text-gray-300 hover:bg-gray-800",
+                        (expandedItems.includes(item.title) || isParentActive(item.children)) && "bg-gray-800"
                       )}
                     >
                       <div className="flex items-center space-x-3">
@@ -206,9 +206,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                         <span>{item.title}</span>
                       </div>
                       {expandedItems.includes(item.title) ? (
-                        <chevron-down className="w-4 h-4" />
+                        <ChevronDown className="w-4 h-4" />
                       ) : (
-                        <chevron-right className="w-4 h-4" />
+                        <ChevronRight className="w-4 h-4" />
                       )}
                     </button>
                     
@@ -221,8 +221,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                             className={({ isActive }) => cn(
                               "flex items-center space-x-3 p-2 text-sm rounded-lg transition-colors",
                               isActive 
-                                ? "bg-primary text-primary-foreground font-medium" 
-                                : "text-sidebar-foreground hover:bg-sidebar-accent"
+                                ? "bg-blue-500 text-white font-medium" 
+                                : "text-gray-300 hover:bg-gray-800"
                             )}
                           >
                             <child.icon className="w-4 h-4" />
@@ -238,8 +238,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                     className={({ isActive }) => cn(
                       "flex items-center space-x-3 p-3 text-sm font-medium rounded-lg transition-colors",
                       isActive 
-                        ? "bg-primary text-primary-foreground" 
-                        : "text-sidebar-foreground hover:bg-sidebar-accent"
+                        ? "bg-blue-500 text-white" 
+                        : "text-gray-300 hover:bg-gray-800"
                     )}
                   >
                     <item.icon className="w-5 h-5" />

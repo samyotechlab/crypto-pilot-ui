@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { trending-up, trending-down, bot, activity, wallet, zap } from 'lucide-react';
+import { TrendingUp, TrendingDown, Bot, Activity, Wallet, Zap } from 'lucide-react';
 
 const portfolioData = {
   totalValue: 125847.32,
@@ -35,17 +35,17 @@ export const DashboardOverview: React.FC = () => {
         <Card className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border-blue-500/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Portfolio</CardTitle>
-            <wallet className="h-4 w-4 text-blue-500" />
+            <Wallet className="h-4 w-4 text-blue-500" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">${portfolioData.totalValue.toLocaleString()}</div>
             <div className="flex items-center space-x-1 text-sm">
               {portfolioData.dailyChange > 0 ? (
-                <trending-up className="h-4 w-4 text-crypto-green" />
+                <TrendingUp className="h-4 w-4 text-green-500" />
               ) : (
-                <trending-down className="h-4 w-4 text-crypto-red" />
+                <TrendingDown className="h-4 w-4 text-red-500" />
               )}
-              <span className={portfolioData.dailyChange > 0 ? 'text-crypto-green' : 'text-crypto-red'}>
+              <span className={portfolioData.dailyChange > 0 ? 'text-green-500' : 'text-red-500'}>
                 {portfolioData.dailyChange > 0 ? '+' : ''}{portfolioData.dailyChange}%
               </span>
               <span className="text-muted-foreground">
@@ -58,7 +58,7 @@ export const DashboardOverview: React.FC = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Active Bots</CardTitle>
-            <bot className="h-4 w-4 text-crypto-green" />
+            <Bot className="h-4 w-4 text-green-500" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{portfolioData.activeBots}</div>
@@ -71,7 +71,7 @@ export const DashboardOverview: React.FC = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Trades</CardTitle>
-            <activity className="h-4 w-4 text-crypto-blue" />
+            <Activity className="h-4 w-4 text-blue-500" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{portfolioData.totalTrades}</div>
@@ -84,10 +84,10 @@ export const DashboardOverview: React.FC = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Profit/Loss</CardTitle>
-            <zap className="h-4 w-4 text-crypto-yellow" />
+            <Zap className="h-4 w-4 text-yellow-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-crypto-green">
+            <div className="text-2xl font-bold text-green-500">
               +${portfolioData.profitLoss.toLocaleString()}
             </div>
             <p className="text-xs text-muted-foreground">
@@ -102,7 +102,7 @@ export const DashboardOverview: React.FC = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <trending-up className="h-5 w-5 text-crypto-green" />
+              <TrendingUp className="h-5 w-5 text-green-500" />
               <span>Top Gainers</span>
             </CardTitle>
           </CardHeader>
@@ -122,7 +122,7 @@ export const DashboardOverview: React.FC = () => {
                   <div className="text-right">
                     <div className="font-medium">${coin.price.toLocaleString()}</div>
                     <div className={`text-sm flex items-center ${
-                      coin.change > 0 ? 'text-crypto-green' : 'text-crypto-red'
+                      coin.change > 0 ? 'text-green-500' : 'text-red-500'
                     }`}>
                       {coin.change > 0 ? '+' : ''}{coin.change}%
                     </div>
@@ -137,7 +137,7 @@ export const DashboardOverview: React.FC = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <activity className="h-5 w-5 text-crypto-blue" />
+              <Activity className="h-5 w-5 text-blue-500" />
               <span>Recent Activity</span>
             </CardTitle>
           </CardHeader>
@@ -148,7 +148,7 @@ export const DashboardOverview: React.FC = () => {
                   <div className="flex items-center space-x-3">
                     <Badge 
                       variant={trade.type === 'buy' ? 'default' : 'secondary'}
-                      className={trade.type === 'buy' ? 'bg-crypto-green text-white' : 'bg-crypto-red text-white'}
+                      className={trade.type === 'buy' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}
                     >
                       {trade.type.toUpperCase()}
                     </Badge>

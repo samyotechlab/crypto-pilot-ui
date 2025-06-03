@@ -21,6 +21,7 @@ import {
   Users
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface SidebarItem {
   title: string;
@@ -156,11 +157,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       {/* Sidebar */}
       <div className={cn(
         "fixed left-0 top-0 h-full bg-gray-900 border-r border-gray-800 z-50 transition-transform duration-300 ease-in-out",
-        "w-64 lg:translate-x-0",
+        "w-64 lg:translate-x-0 flex flex-col",
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-800">
+        <div className="flex items-center justify-between p-4 border-b border-gray-800 flex-shrink-0">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
               <Bot className="w-5 h-5 text-white" />
@@ -175,8 +176,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
           </button>
         </div>
 
-        {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto scrollbar-hide p-4">
+        {/* Navigation with ScrollArea */}
+        <ScrollArea className="flex-1 p-4">
           <div className="space-y-2">
             {sidebarItems.map((item) => (
               <div key={item.title}>
@@ -238,7 +239,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
               </div>
             ))}
           </div>
-        </nav>
+        </ScrollArea>
       </div>
     </>
   );

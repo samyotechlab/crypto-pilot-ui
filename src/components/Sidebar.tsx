@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { 
@@ -23,6 +22,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface SidebarItem {
   title: string;
@@ -128,6 +128,7 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
   const [expandedItems, setExpandedItems] = useState<string[]>(['Dashboard']);
   const location = useLocation();
+  const { theme } = useTheme();
 
   const toggleExpanded = (title: string) => {
     setExpandedItems(prev => 
@@ -172,21 +173,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       
       {/* Sidebar */}
       <div className={cn(
-        "fixed left-0 top-0 h-full bg-gray-900 border-r border-gray-800 z-50 transition-transform duration-300 ease-in-out",
+        "fixed left-0 top-0 h-full border-r z-50 transition-transform duration-300 ease-in-out",
         "w-64 lg:translate-x-0 flex flex-col",
+        "bg-sidebar-background border-sidebar-border",
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-800 flex-shrink-0">
+        <div className="flex items-center justify-between p-4 border-b border-sidebar-border flex-shrink-0">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-              <Bot className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 bg-sidebar-primary rounded-lg flex items-center justify-center">
+              <Bot className="w-5 h-5 text-sidebar-primary-foreground" />
             </div>
-            <span className="text-lg font-bold text-white">CryptoBot Pro</span>
+            <span className="text-lg font-bold text-sidebar-foreground">CryptoBot Pro</span>
           </div>
           <button
             onClick={onToggle}
-            className="lg:hidden p-1 text-gray-400 hover:bg-gray-800 rounded"
+            className="lg:hidden p-1 text-sidebar-foreground hover:bg-sidebar-accent rounded"
           >
             <X className="w-5 h-5" />
           </button>
@@ -203,9 +205,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                       onClick={() => toggleExpanded(item.title)}
                       className={cn(
                         "w-full flex items-center justify-between p-3 text-sm font-medium rounded-lg transition-colors",
-                        "text-gray-300 hover:bg-gray-800",
-                        // Only highlight parent if expanded and no child is active
-                        expandedItems.includes(item.title) && !isParentActive(item.children) && "bg-gray-800"
+                        "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                        expandedItems.includes(item.title) && !isParentActive(item.children) && "bg-sidebar-accent"
                       )}
                     >
                       <div className="flex items-center space-x-3">
@@ -228,8 +229,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                             className={({ isActive }) => cn(
                               "flex items-center space-x-3 p-2 text-sm rounded-lg transition-colors",
                               isActive 
-                                ? "bg-blue-500 text-white font-medium" 
-                                : "text-gray-300 hover:bg-gray-800"
+                                ? "bg-sidebar-primary text-sidebar-primary-foreground font-medium" 
+                                : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                             )}
                           >
                             <child.icon className="w-4 h-4" />
@@ -245,8 +246,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                     className={({ isActive }) => cn(
                       "flex items-center space-x-3 p-3 text-sm font-medium rounded-lg transition-colors",
                       isActive 
-                        ? "bg-blue-500 text-white" 
-                        : "text-gray-300 hover:bg-gray-800"
+                        ? "bg-sidebar-primary text-sidebar-primary-foreground" 
+                        : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                     )}
                   >
                     <item.icon className="w-5 h-5" />

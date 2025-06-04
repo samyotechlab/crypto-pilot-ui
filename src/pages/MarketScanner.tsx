@@ -4,8 +4,11 @@ import { Layout } from '@/components/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, TrendingDown } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const MarketScanner = () => {
+  const { t } = useLanguage();
+  
   const scanResults = [
     { symbol: 'BTC/USDT', price: '$65,432', change: '+2.34%', volume: '$2.1B', signal: 'strong_buy' },
     { symbol: 'ETH/USDT', price: '$3,245', change: '-1.23%', volume: '$1.5B', signal: 'sell' },
@@ -23,19 +26,23 @@ const MarketScanner = () => {
     }
   };
 
+  const getSignalText = (signal: string) => {
+    return t(signal.replace('_', '.'));
+  };
+
   return (
     <Layout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Market Scanner</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{t('market.scanner')}</h1>
           <p className="text-muted-foreground">
-            Scan markets for trading opportunities with technical analysis
+            {t('scan.markets.opportunities')}
           </p>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Scan Results</CardTitle>
+            <CardTitle>{t('scan.results')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -44,7 +51,7 @@ const MarketScanner = () => {
                   <div className="flex items-center space-x-4">
                     <div>
                       <div className="font-medium">{item.symbol}</div>
-                      <div className="text-sm text-muted-foreground">Vol: {item.volume}</div>
+                      <div className="text-sm text-muted-foreground">{t('vol')}: {item.volume}</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -62,7 +69,7 @@ const MarketScanner = () => {
                       </div>
                     </div>
                     <Badge className={getSignalColor(item.signal)}>
-                      {item.signal.replace('_', ' ').toUpperCase()}
+                      {getSignalText(item.signal)}
                     </Badge>
                   </div>
                 </div>

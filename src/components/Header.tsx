@@ -1,15 +1,18 @@
 
 import React from 'react';
-import { Menu, Bell, User, Sun, Search } from 'lucide-react';
+import { Menu, Bell, User, Sun, Moon, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface HeaderProps {
   onToggleSidebar: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <header className="h-16 bg-card border-b border-border flex items-center justify-between px-4 lg:px-6">
       {/* Left side */}
@@ -56,8 +59,12 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
         </Button>
 
         {/* Theme toggle */}
-        <Button variant="ghost" size="sm">
-          <Sun className="w-5 h-5" />
+        <Button variant="ghost" size="sm" onClick={toggleTheme}>
+          {theme === 'light' ? (
+            <Moon className="w-5 h-5" />
+          ) : (
+            <Sun className="w-5 h-5" />
+          )}
         </Button>
 
         {/* User menu */}

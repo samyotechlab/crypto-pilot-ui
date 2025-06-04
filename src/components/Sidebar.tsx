@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { 
@@ -136,13 +137,28 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
     );
   };
 
-  const isActive = (href: string) => {
+  const isChildActive = (href: string) => {
     return location.pathname === href;
   };
 
   const isParentActive = (children: SidebarItem[]) => {
-    return children.some(child => child.href && isActive(child.href));
+    return children.some(child => child.href && isChildActive(child.href));
   };
+
+  const shouldExpandParent = (children: SidebarItem[]) => {
+    return children.some(child => child.href && isChildActive(child.href));
+  };
+
+  // Auto-expand parent if child is active
+  React.useEffect(() => {
+    sidebarItems.forEach(item => {
+      if (item.children && shouldExpandParent(item.children)) {
+        setExpandedItems(prev => 
+          prev.includes(item.title) ? prev : [...prev, item.title]
+        );
+      }
+    });
+  }, [location.pathname]);
 
   return (
     <>
@@ -188,7 +204,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                       className={cn(
                         "w-full flex items-center justify-between p-3 text-sm font-medium rounded-lg transition-colors",
                         "text-gray-300 hover:bg-gray-800",
-                        (expandedItems.includes(item.title) || isParentActive(item.children)) && "bg-gray-800"
+                        // Only highlight parent if expanded and no child is active
+                        expandedItems.includes(item.title) && !isParentActive(item.children) && "bg-gray-800"
                       )}
                     >
                       <div className="flex items-center space-x-3">

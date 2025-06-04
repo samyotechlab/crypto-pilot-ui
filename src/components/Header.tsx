@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { LanguageSelector } from './LanguageSelector';
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -12,6 +14,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   const { theme, toggleTheme } = useTheme();
+  const { t } = useLanguage();
 
   return (
     <header className="h-16 bg-card border-b border-border flex items-center justify-between px-4 lg:px-6">
@@ -30,7 +33,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input 
-              placeholder="Search markets, bots..." 
+              placeholder={t('search.placeholder')}
               className="pl-10 w-64"
             />
           </div>
@@ -43,9 +46,12 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
         <div className="hidden sm:flex items-center space-x-2">
           <div className="flex items-center space-x-1">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-sm text-muted-foreground">Markets Open</span>
+            <span className="text-sm text-muted-foreground">{t('market.status')}</span>
           </div>
         </div>
+
+        {/* Language selector */}
+        <LanguageSelector />
 
         {/* Notifications */}
         <Button variant="ghost" size="sm" className="relative">
@@ -72,7 +78,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
             <User className="w-4 h-4 text-primary-foreground" />
           </div>
-          <span className="hidden sm:block text-sm font-medium">John Doe</span>
+          <span className="hidden sm:block text-sm font-medium">{t('user.name')}</span>
         </Button>
       </div>
     </header>

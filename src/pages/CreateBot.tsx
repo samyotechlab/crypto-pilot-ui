@@ -7,13 +7,16 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Zap } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const CreateBot = () => {
+  const { t } = useLanguage();
+  
   return (
     <Layout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Create New Bot</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{t('create.new.bot')}</h1>
           <p className="text-muted-foreground">
             Set up a new trading bot with your preferred strategy
           </p>
@@ -26,14 +29,14 @@ const CreateBot = () => {
           <CardContent className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="botName">Bot Name</Label>
-                <Input id="botName" placeholder="Enter bot name" />
+                <Label htmlFor="botName">{t('bot.name')}</Label>
+                <Input id="botName" placeholder={t('enter.bot.name')} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="tradingPair">Trading Pair</Label>
+                <Label htmlFor="tradingPair">{t('trading.pair')}</Label>
                 <Select>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select trading pair" />
+                    <SelectValue placeholder={t('select.trading.pair')} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="btc-usdt">BTC/USDT</SelectItem>
@@ -43,10 +46,10 @@ const CreateBot = () => {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="strategy">Strategy Type</Label>
+                <Label htmlFor="strategy">{t('strategy.type')}</Label>
                 <Select>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select strategy" />
+                    <SelectValue placeholder={t('select.strategy')} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="grid">Grid Trading</SelectItem>
@@ -57,14 +60,14 @@ const CreateBot = () => {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="investment">Investment Amount</Label>
-                <Input id="investment" placeholder="Enter amount in USDT" type="number" />
+                <Label htmlFor="investment">{t('investment.amount')}</Label>
+                <Input id="investment" placeholder={t('enter.amount.usdt')} type="number" />
               </div>
             </div>
             
             <Button className="w-full">
               <Zap className="w-4 h-4 mr-2" />
-              Create Bot
+              {t('create.bot')}
             </Button>
           </CardContent>
         </Card>

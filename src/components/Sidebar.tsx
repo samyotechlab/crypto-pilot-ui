@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { 
@@ -23,9 +24,10 @@ import {
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface SidebarItem {
-  title: string;
+  titleKey: string;
   href?: string;
   icon: any;
   children?: SidebarItem[];
@@ -33,89 +35,89 @@ interface SidebarItem {
 
 const sidebarItems: SidebarItem[] = [
   {
-    title: 'Dashboard',
+    titleKey: 'dashboard',
     icon: LayoutDashboard,
     children: [
-      { title: 'Overview', href: '/', icon: Activity },
-      { title: 'Performance Summary', href: '/performance', icon: ChartLine },
-      { title: 'Market Overview', href: '/market-overview', icon: BarChart3 }
+      { titleKey: 'overview', href: '/', icon: Activity },
+      { titleKey: 'performance.summary', href: '/performance', icon: ChartLine },
+      { titleKey: 'market.overview', href: '/market-overview', icon: BarChart3 }
     ]
   },
   {
-    title: 'Bots',
+    titleKey: 'bots',
     icon: Bot,
     children: [
-      { title: 'Create New Bot', href: '/bots/create', icon: Zap },
-      { title: 'My Bots', href: '/bots', icon: Bot },
-      { title: 'Bot Performance', href: '/bots/performance', icon: ChartLine },
-      { title: 'Strategy Templates', href: '/bots/templates', icon: Settings }
+      { titleKey: 'create.new.bot', href: '/bots/create', icon: Zap },
+      { titleKey: 'my.bots', href: '/bots', icon: Bot },
+      { titleKey: 'bot.performance', href: '/bots/performance', icon: ChartLine },
+      { titleKey: 'strategy.templates', href: '/bots/templates', icon: Settings }
     ]
   },
   {
-    title: 'Trading',
+    titleKey: 'trading',
     icon: Activity,
     children: [
-      { title: 'Manual Trading', href: '/trading/manual', icon: Activity },
-      { title: 'Signal Trading', href: '/trading/signals', icon: Zap },
-      { title: 'Paper Trading', href: '/trading/paper', icon: ChartLine }
+      { titleKey: 'manual.trading', href: '/trading/manual', icon: Activity },
+      { titleKey: 'signal.trading', href: '/trading/signals', icon: Zap },
+      { titleKey: 'paper.trading', href: '/trading/paper', icon: ChartLine }
     ]
   },
   {
-    title: 'Markets',
+    titleKey: 'markets',
     icon: BarChart3,
     children: [
-      { title: 'Live Charts', href: '/markets/charts', icon: ChartLine },
-      { title: 'Market Scanner', href: '/markets/scanner', icon: Activity },
-      { title: 'Watchlist', href: '/markets/watchlist', icon: Activity },
-      { title: 'Price Alerts', href: '/markets/alerts', icon: Bell }
+      { titleKey: 'live.charts', href: '/markets/charts', icon: ChartLine },
+      { titleKey: 'market.scanner', href: '/markets/scanner', icon: Activity },
+      { titleKey: 'watchlist', href: '/markets/watchlist', icon: Activity },
+      { titleKey: 'price.alerts', href: '/markets/alerts', icon: Bell }
     ]
   },
   {
-    title: 'Exchanges & API',
+    titleKey: 'exchanges.api',
     icon: Key,
     children: [
-      { title: 'Connect Exchange', href: '/exchanges', icon: Activity },
-      { title: 'API Management', href: '/api', icon: Key },
-      { title: 'Sync Balances', href: '/balances', icon: Coins }
+      { titleKey: 'connect.exchange', href: '/exchanges', icon: Activity },
+      { titleKey: 'api.management', href: '/api', icon: Key },
+      { titleKey: 'sync.balances', href: '/balances', icon: Coins }
     ]
   },
   {
-    title: 'Alerts',
+    titleKey: 'alerts',
     icon: Bell,
     children: [
-      { title: 'Create Alert', href: '/alerts/create', icon: Zap },
-      { title: 'Notification Settings', href: '/alerts/settings', icon: Settings },
-      { title: 'Alert Logs', href: '/alerts/logs', icon: Activity }
+      { titleKey: 'create.alert', href: '/alerts/create', icon: Zap },
+      { titleKey: 'notification.settings', href: '/alerts/settings', icon: Settings },
+      { titleKey: 'alert.logs', href: '/alerts/logs', icon: Activity }
     ]
   },
   {
-    title: 'Strategy Builder',
+    titleKey: 'strategy.builder',
     icon: Settings,
     children: [
-      { title: 'Build Strategy', href: '/strategy/build', icon: Zap },
-      { title: 'Saved Strategies', href: '/strategy/saved', icon: Activity },
-      { title: 'Backtesting', href: '/strategy/backtest', icon: ChartLine },
-      { title: 'Marketplace', href: '/strategy/marketplace', icon: Activity }
+      { titleKey: 'build.strategy', href: '/strategy/build', icon: Zap },
+      { titleKey: 'saved.strategies', href: '/strategy/saved', icon: Activity },
+      { titleKey: 'backtesting', href: '/strategy/backtest', icon: ChartLine },
+      { titleKey: 'marketplace', href: '/strategy/marketplace', icon: Activity }
     ]
   },
   {
-    title: 'Security & Settings',
+    titleKey: 'security.settings',
     icon: Shield,
     children: [
-      { title: 'Profile Settings', href: '/settings/profile', icon: User },
-      { title: 'Two-Factor Auth', href: '/settings/2fa', icon: Shield },
-      { title: 'Theme Settings', href: '/settings/theme', icon: Activity },
-      { title: 'Session Logs', href: '/settings/sessions', icon: Activity }
+      { titleKey: 'profile.settings', href: '/settings/profile', icon: User },
+      { titleKey: 'two.factor.auth', href: '/settings/2fa', icon: Shield },
+      { titleKey: 'theme.settings', href: '/settings/theme', icon: Activity },
+      { titleKey: 'session.logs', href: '/settings/sessions', icon: Activity }
     ]
   },
   {
-    title: 'Help',
+    titleKey: 'help',
     icon: HelpCircle,
     children: [
-      { title: 'Documentation', href: '/help/docs', icon: Activity },
-      { title: 'Contact Support', href: '/help/support', icon: Activity },
-      { title: 'Bug Reports', href: '/help/bugs', icon: Activity },
-      { title: 'Community', href: '/help/community', icon: Users }
+      { titleKey: 'documentation', href: '/help/docs', icon: Activity },
+      { titleKey: 'contact.support', href: '/help/support', icon: Activity },
+      { titleKey: 'bug.reports', href: '/help/bugs', icon: Activity },
+      { titleKey: 'community', href: '/help/community', icon: Users }
     ]
   }
 ];
@@ -126,15 +128,16 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
-  const [expandedItems, setExpandedItems] = useState<string[]>(['Dashboard']);
+  const [expandedItems, setExpandedItems] = useState<string[]>(['dashboard']);
   const location = useLocation();
   const { theme } = useTheme();
+  const { t } = useLanguage();
 
-  const toggleExpanded = (title: string) => {
+  const toggleExpanded = (titleKey: string) => {
     setExpandedItems(prev => 
-      prev.includes(title) 
-        ? prev.filter(item => item !== title)
-        : [...prev, title]
+      prev.includes(titleKey) 
+        ? prev.filter(item => item !== titleKey)
+        : [...prev, titleKey]
     );
   };
 
@@ -155,7 +158,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
     sidebarItems.forEach(item => {
       if (item.children && shouldExpandParent(item.children)) {
         setExpandedItems(prev => 
-          prev.includes(item.title) ? prev : [...prev, item.title]
+          prev.includes(item.titleKey) ? prev : [...prev, item.titleKey]
         );
       }
     });
@@ -184,7 +187,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
             <div className="w-8 h-8 bg-sidebar-primary rounded-lg flex items-center justify-center">
               <Bot className="w-5 h-5 text-sidebar-primary-foreground" />
             </div>
-            <span className="text-lg font-bold text-sidebar-foreground">CryptoBot Pro</span>
+            <span className="text-lg font-bold text-sidebar-foreground">{t('app.name')}</span>
           </div>
           <button
             onClick={onToggle}
@@ -198,33 +201,33 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
         <ScrollArea className="flex-1 p-4">
           <div className="space-y-2">
             {sidebarItems.map((item) => (
-              <div key={item.title}>
+              <div key={item.titleKey}>
                 {item.children ? (
                   <>
                     <button
-                      onClick={() => toggleExpanded(item.title)}
+                      onClick={() => toggleExpanded(item.titleKey)}
                       className={cn(
                         "w-full flex items-center justify-between p-3 text-sm font-medium rounded-lg transition-colors",
                         "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-                        expandedItems.includes(item.title) && !isParentActive(item.children) && "bg-sidebar-accent"
+                        expandedItems.includes(item.titleKey) && !isParentActive(item.children) && "bg-sidebar-accent"
                       )}
                     >
                       <div className="flex items-center space-x-3">
                         <item.icon className="w-5 h-5" />
-                        <span>{item.title}</span>
+                        <span>{t(item.titleKey)}</span>
                       </div>
-                      {expandedItems.includes(item.title) ? (
+                      {expandedItems.includes(item.titleKey) ? (
                         <ChevronDown className="w-4 h-4" />
                       ) : (
                         <ChevronRight className="w-4 h-4" />
                       )}
                     </button>
                     
-                    {expandedItems.includes(item.title) && (
+                    {expandedItems.includes(item.titleKey) && (
                       <div className="ml-4 mt-2 space-y-1">
                         {item.children.map((child) => (
                           <NavLink
-                            key={child.title}
+                            key={child.titleKey}
                             to={child.href!}
                             className={({ isActive }) => cn(
                               "flex items-center space-x-3 p-2 text-sm rounded-lg transition-colors",
@@ -234,7 +237,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                             )}
                           >
                             <child.icon className="w-4 h-4" />
-                            <span>{child.title}</span>
+                            <span>{t(child.titleKey)}</span>
                           </NavLink>
                         ))}
                       </div>
@@ -251,7 +254,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                     )}
                   >
                     <item.icon className="w-5 h-5" />
-                    <span>{item.title}</span>
+                    <span>{t(item.titleKey)}</span>
                   </NavLink>
                 )}
               </div>

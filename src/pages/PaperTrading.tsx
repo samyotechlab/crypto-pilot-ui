@@ -5,15 +5,18 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, TrendingDown, DollarSign } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const PaperTrading = () => {
+  const { t } = useLanguage();
+  
   return (
     <Layout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Paper Trading</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{t('paper.trading')}</h1>
           <p className="text-muted-foreground">
-            Practice trading strategies with virtual money
+            {t('practice.trading.strategies')}
           </p>
         </div>
 
@@ -23,7 +26,7 @@ const PaperTrading = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-2xl font-bold">$100,000</div>
-                  <div className="text-sm text-muted-foreground">Virtual Balance</div>
+                  <div className="text-sm text-muted-foreground">{t('virtual.balance')}</div>
                 </div>
                 <DollarSign className="w-8 h-8 text-blue-500" />
               </div>
@@ -35,7 +38,7 @@ const PaperTrading = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-2xl font-bold text-green-500">+$5,420</div>
-                  <div className="text-sm text-muted-foreground">Paper P&L</div>
+                  <div className="text-sm text-muted-foreground">{t('paper.pnl')}</div>
                 </div>
                 <TrendingUp className="w-8 h-8 text-green-500" />
               </div>
@@ -47,7 +50,7 @@ const PaperTrading = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-2xl font-bold">156</div>
-                  <div className="text-sm text-muted-foreground">Paper Trades</div>
+                  <div className="text-sm text-muted-foreground">{t('paper.trades')}</div>
                 </div>
                 <TrendingUp className="w-8 h-8 text-blue-500" />
               </div>
@@ -57,7 +60,7 @@ const PaperTrading = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Paper Trading History</CardTitle>
+            <CardTitle>{t('paper.trading.history')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -69,7 +72,7 @@ const PaperTrading = () => {
                 <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
                   <div className="flex items-center space-x-4">
                     <Badge className={trade.type === 'BUY' ? 'bg-green-500' : 'bg-red-500'}>
-                      {trade.type}
+                      {t(trade.type.toLowerCase())}
                     </Badge>
                     <div>
                       <div className="font-medium">{trade.pair}</div>
@@ -81,7 +84,7 @@ const PaperTrading = () => {
                       {trade.pnl}
                     </div>
                     <Badge variant={trade.status === 'open' ? 'default' : 'secondary'}>
-                      {trade.status}
+                      {t(trade.status)}
                     </Badge>
                   </div>
                 </div>
@@ -92,11 +95,11 @@ const PaperTrading = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Start New Paper Trading Session</CardTitle>
+            <CardTitle>{t('start.new.paper.trading')}</CardTitle>
           </CardHeader>
           <CardContent>
             <Button className="w-full">
-              Reset Virtual Balance & Start Fresh
+              {t('reset.virtual.balance')}
             </Button>
           </CardContent>
         </Card>

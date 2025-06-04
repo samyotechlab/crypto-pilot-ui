@@ -5,8 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Download, Star } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const BotTemplates = () => {
+  const { t } = useLanguage();
+  
   const templates = [
     { 
       name: 'Conservative Grid', 
@@ -35,9 +38,9 @@ const BotTemplates = () => {
     <Layout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Strategy Templates</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{t('strategy.templates')}</h1>
           <p className="text-muted-foreground">
-            Pre-configured bot strategies ready to deploy
+            {t('preconfigured.bot.strategies')}
           </p>
         </div>
 
@@ -66,7 +69,7 @@ const BotTemplates = () => {
 
                 <Button className="w-full">
                   <Download className="w-4 h-4 mr-2" />
-                  Use Template
+                  {t('use.template')}
                 </Button>
               </CardContent>
             </Card>

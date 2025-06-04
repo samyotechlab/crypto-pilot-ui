@@ -4,8 +4,11 @@ import { Layout } from '@/components/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, TrendingDown } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const BotPerformance = () => {
+  const { t } = useLanguage();
+  
   const botPerformanceData = [
     { name: 'Bitcoin Grid Bot', profit: 1234.56, roi: 12.34, trades: 45, status: 'active' },
     { name: 'ETH DCA Bot', profit: -234.12, roi: -2.45, trades: 23, status: 'paused' },
@@ -16,9 +19,9 @@ const BotPerformance = () => {
     <Layout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Bot Performance</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{t('bot.performance')}</h1>
           <p className="text-muted-foreground">
-            Detailed performance metrics for all your trading bots
+            {t('detailed.performance.metrics')}
           </p>
         </div>
 
@@ -31,7 +34,7 @@ const BotPerformance = () => {
                     <div>
                       <h3 className="font-semibold">{bot.name}</h3>
                       <Badge className={bot.status === 'active' ? 'bg-green-500' : 'bg-yellow-500'}>
-                        {bot.status}
+                        {t(bot.status)}
                       </Badge>
                     </div>
                   </div>
@@ -40,18 +43,18 @@ const BotPerformance = () => {
                       <div className={`text-lg font-bold ${bot.profit > 0 ? 'text-green-500' : 'text-red-500'}`}>
                         ${bot.profit.toFixed(2)}
                       </div>
-                      <div className="text-sm text-muted-foreground">Profit</div>
+                      <div className="text-sm text-muted-foreground">{t('profit')}</div>
                     </div>
                     <div className="text-center">
                       <div className={`text-lg font-bold flex items-center ${bot.roi > 0 ? 'text-green-500' : 'text-red-500'}`}>
                         {bot.roi > 0 ? <TrendingUp className="w-4 h-4 mr-1" /> : <TrendingDown className="w-4 h-4 mr-1" />}
                         {bot.roi}%
                       </div>
-                      <div className="text-sm text-muted-foreground">ROI</div>
+                      <div className="text-sm text-muted-foreground">{t('roi')}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-lg font-bold">{bot.trades}</div>
-                      <div className="text-sm text-muted-foreground">Trades</div>
+                      <div className="text-sm text-muted-foreground">{t('trades')}</div>
                     </div>
                   </div>
                 </div>

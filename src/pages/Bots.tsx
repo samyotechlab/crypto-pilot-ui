@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Bot, Zap, Settings, TrendingUp, TrendingDown, Play, Pause, Trash } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const botsData = [
   {
@@ -43,19 +44,21 @@ const botsData = [
 ];
 
 const Bots = () => {
+  const { t } = useLanguage();
+  
   return (
     <Layout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">My Bots</h1>
+            <h1 className="text-3xl font-bold tracking-tight">{t('my.bots')}</h1>
             <p className="text-muted-foreground">
-              Manage and monitor your trading bots
+              {t('manage.monitor.bots')}
             </p>
           </div>
           <Button className="bg-blue-500 hover:bg-blue-600">
             <Zap className="w-4 h-4 mr-2" />
-            Create New Bot
+            {t('create.new.bot')}
           </Button>
         </div>
 
@@ -70,7 +73,7 @@ const Bots = () => {
                     botItem.status === 'paused' ? 'bg-yellow-500' : 
                     'bg-red-500'
                   }>
-                    {botItem.status}
+                    {t(botItem.status)}
                   </Badge>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground">
@@ -83,7 +86,7 @@ const Bots = () => {
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <div className="text-sm text-muted-foreground">Profit</div>
+                    <div className="text-sm text-muted-foreground">{t('profit')}</div>
                     <div className={`text-lg font-bold ${
                       botItem.profit > 0 ? 'text-green-500' : 'text-red-500'
                     }`}>
@@ -91,7 +94,7 @@ const Bots = () => {
                     </div>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground">ROI</div>
+                    <div className="text-sm text-muted-foreground">{t('roi')}</div>
                     <div className={`text-lg font-bold flex items-center ${
                       botItem.profitPercent > 0 ? 'text-green-500' : 'text-red-500'
                     }`}>
@@ -107,11 +110,11 @@ const Bots = () => {
 
                 <div className="text-sm text-muted-foreground">
                   <div className="flex justify-between">
-                    <span>Trades</span>
+                    <span>{t('trades')}</span>
                     <span className="font-medium">{botItem.trades}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Created</span>
+                    <span>{t('created')}</span>
                     <span className="font-medium">{botItem.created}</span>
                   </div>
                 </div>
@@ -125,12 +128,12 @@ const Bots = () => {
                     {botItem.status === 'active' ? (
                       <>
                         <Pause className="w-4 h-4 mr-2" />
-                        Pause
+                        {t('pause')}
                       </>
                     ) : (
                       <>
                         <Play className="w-4 h-4 mr-2" />
-                        Start
+                        {t('start')}
                       </>
                     )}
                   </Button>
@@ -153,7 +156,7 @@ const Bots = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-2xl font-bold">12</div>
-                  <div className="text-sm text-muted-foreground">Total Bots</div>
+                  <div className="text-sm text-muted-foreground">{t('total.bots')}</div>
                 </div>
                 <Bot className="w-8 h-8 text-blue-500" />
               </div>
@@ -165,7 +168,7 @@ const Bots = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-2xl font-bold text-green-500">8</div>
-                  <div className="text-sm text-muted-foreground">Active</div>
+                  <div className="text-sm text-muted-foreground">{t('active')}</div>
                 </div>
                 <Play className="w-8 h-8 text-green-500" />
               </div>
@@ -177,7 +180,7 @@ const Bots = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-2xl font-bold text-yellow-500">3</div>
-                  <div className="text-sm text-muted-foreground">Paused</div>
+                  <div className="text-sm text-muted-foreground">{t('paused')}</div>
                 </div>
                 <Pause className="w-8 h-8 text-yellow-500" />
               </div>
@@ -189,7 +192,7 @@ const Bots = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-2xl font-bold text-red-500">1</div>
-                  <div className="text-sm text-muted-foreground">Error</div>
+                  <div className="text-sm text-muted-foreground">{t('error')}</div>
                 </div>
                 <Zap className="w-8 h-8 text-red-500" />
               </div>

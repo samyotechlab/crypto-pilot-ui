@@ -32,6 +32,10 @@ import ProfileSettings from "./pages/ProfileSettings";
 import TwoFactorAuth from "./pages/TwoFactorAuth";
 import ThemeSettings from "./pages/ThemeSettings";
 import SessionLogs from "./pages/SessionLogs";
+import Documentation from "./pages/Documentation";
+import ContactSupport from "./pages/ContactSupport";
+import BugReports from "./pages/BugReports";
+import Community from "./pages/Community";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -74,23 +78,29 @@ const App = () => (
           <Route path="/alerts/settings" element={<NotificationSettings />} />
           <Route path="/alerts/logs" element={<AlertLogs />} />
           
-          {/* Placeholder routes for remaining sections */}
-          <Route path="/strategy/build" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Build Strategy - Coming Soon</h1></div>} />
-          <Route path="/strategy/saved" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Saved Strategies - Coming Soon</h1></div>} />
-          <Route path="/strategy/backtest" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Backtesting - Coming Soon</h1></div>} />
-          <Route path="/strategy/marketplace" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Strategy Marketplace - Coming Soon</h1></div>} />
-          <Route path="/settings/profile" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Profile Settings - Coming Soon</h1></div>} />
-          <Route path="/settings/2fa" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Two-Factor Auth - Coming Soon</h1></div>} />
-          <Route path="/settings/theme" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Theme Settings - Coming Soon</h1></div>} />
-          <Route path="/settings/sessions" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Session Logs - Coming Soon</h1></div>} />
+          {/* Strategy Routes */}
+          <Route path="/strategy/build" element={<BuildStrategy />} />
+          <Route path="/strategy/saved" element={<SavedStrategies />} />
+          <Route path="/strategy/backtest" element={<Backtesting />} />
+          <Route path="/strategy/marketplace" element={<StrategyMarketplace />} />
+          
+          {/* Settings Routes */}
+          <Route path="/settings/profile" element={<ProfileSettings />} />
+          <Route path="/settings/2fa" element={<TwoFactorAuth />} />
+          <Route path="/settings/theme" element={<ThemeSettings />} />
+          <Route path="/settings/sessions" element={<SessionLogs />} />
+          
+          {/* Help Routes */}
+          <Route path="/help/docs" element={<Documentation />} />
+          <Route path="/help/support" element={<ContactSupport />} />
+          <Route path="/help/bugs" element={<BugReports />} />
+          <Route path="/help/community" element={<Community />} />
+          
+          {/* Admin placeholder routes */}
           <Route path="/admin/users" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">User Management - Coming Soon</h1></div>} />
           <Route path="/admin/logs" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">System Logs - Coming Soon</h1></div>} />
           <Route path="/admin/stats" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Usage Stats - Coming Soon</h1></div>} />
           <Route path="/admin/monitor" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Server Monitor - Coming Soon</h1></div>} />
-          <Route path="/help/docs" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Documentation - Coming Soon</h1></div>} />
-          <Route path="/help/support" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Contact Support - Coming Soon</h1></div>} />
-          <Route path="/help/bugs" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Bug Reports - Coming Soon</h1></div>} />
-          <Route path="/help/community" element={<div className="p-8 text-center"><h1 className="text-2xl font-bold">Community - Coming Soon</h1></div>} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
